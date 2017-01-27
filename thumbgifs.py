@@ -4,9 +4,9 @@ from moviepy.editor import VideoFileClip, concatenate_videoclips
 from tqdm import tqdm
 
 
-def generate_glimpses(path, each_percent=0.05, during=2, max_duration=float("inf"), fps=15, resize=0.2):
+def generate_glimpses(path, each_percent=0.1, during=2, max_duration=float("inf"), fps=5):
     video = (VideoFileClip(path)
-            .resize(resize))
+            .resize( (400, 220 ) ))
     video.set_fps(fps)
     video.audio = None
     duration = video.duration
@@ -33,14 +33,12 @@ def generate_glimpses(path, each_percent=0.05, during=2, max_duration=float("inf
 if __name__ == "__main__":
     # Parameters
     fps = 5
-    max_duration = 10
+    max_duration = 20
     
     
     video_paths = []
     if len(argv) == 1:
-        #raise Exception("You need to pass at least one argument")
-        video_paths.append("video.mp5")
-        video_paths.append("video.mp4")
+        raise Exception("You need to pass at least one argument")
     elif len(argv) == 2 and argv[1][-3:] == "txt":
         with open(argv[1], "rb") as f:
             video_paths = f.read().splitlines()
