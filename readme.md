@@ -6,18 +6,14 @@ sub-videos into one short video which is then converted to a low-size GIF which
 can easily be used for a thumbnail.
 
 ## Setup
-- `pip install moviepy`
-- In `Python/Lib/site-packages/moviepy/video/fx/resize.py`, line 32:
-    - Change the line
-    ```python
-    arr = np.fromstring(resized_pil.tostring(), dtype='uint8')
-    ```
-    - With the line
-    ```python
-    arr = np.fromstring(resized_pil.tobytes(), dtype='uint8')
-    ```
-- Finally, FFMPEG
-    - You have ffmpeg installed: well you're done here.
+- Install **moviepy** with:
+
+   ```shell
+   pip install moviepy
+   ```
+   
+- Finally, install FFMPEG
+    - You have ffmpeg installed: well, you're done here.
     - You don't have it, the program will just install it by itself it seems
     - Otherwise, you can install ffmpeg manually (and add to the path on Windows OSes!)
 
@@ -31,3 +27,6 @@ can easily be used for a thumbnail.
     ../videos/video2.mp4
     ../videos/video3.mp4
     ```
+	
+## More configuration
+In the Python script, you can modify the framerates, the resolution in the main code at the bottom

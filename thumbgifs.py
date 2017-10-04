@@ -4,9 +4,9 @@ from moviepy.editor import VideoFileClip, concatenate_videoclips
 from tqdm import tqdm
 
 
-def generate_glimpses(path, each_percent=0.1, during=2, max_duration=float("inf"), fps=5):
+def generate_glimpses(path, each_percent=0.1, during=2, max_duration=float("inf"), fps=5, width=400, height=220):
     video = (VideoFileClip(path)
-            .resize( (400, 220 ) ))
+            .resize( (width, height ) ))
     video.set_fps(fps)
     video.audio = None
     duration = video.duration
@@ -34,7 +34,8 @@ if __name__ == "__main__":
     # Parameters
     fps = 5
     max_duration = 20
-    
+    width = 400
+    height = 220
     
     video_paths = []
     if len(argv) == 1:
@@ -50,7 +51,7 @@ if __name__ == "__main__":
         if not isfile(video_paths[i]):
             print("!!! Video file "+video_paths[i]+" was not found !!!")
             continue
-        glimpses = generate_glimpses(video_paths[i], max_duration=max_duration, fps=fps)
+        glimpses = generate_glimpses(video_paths[i], max_duration=max_duration, fps=fps, width=width, height=height)
         output_name = video_paths[i].split('/')[-1][:-3] + "gif"
         glimpses.write_gif(output_name, program='ffmpeg', fps=fps)
         #glimpses.write_videofile("output.mp4", program='ffmpeg', fps=fps)
