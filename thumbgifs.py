@@ -46,16 +46,16 @@ if __name__ == "__main__":
         for i in range(1, len(argv)):
             video_paths.append(argv[i])
     for i in range(len(video_paths)):
-        print "Working on video "+str(i+1)+"..."
+        print("Working on video "+str(i+1)+"...")
         if not isfile(video_paths[i]):
-            print "!!! Video file "+video_paths[i]+" was not found !!!"
+            print("!!! Video file "+video_paths[i]+" was not found !!!")
             continue
         glimpses = generate_glimpses(video_paths[i], max_duration=max_duration, fps=fps)
         output_name = video_paths[i].split('/')[-1][:-3] + "gif"
         glimpses.write_gif(output_name, program='ffmpeg', fps=fps)
         #glimpses.write_videofile("output.mp4", program='ffmpeg', fps=fps)
-        print
-        print
+        print()
+        print()
         
             
             
